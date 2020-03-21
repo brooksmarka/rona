@@ -2,7 +2,7 @@ import useStats from "../utils/useStats";
 
 export default function Stats({ url }){
     
-    const stats = useStats(url);
+    const {stats, loading, error }= useStats(url);
     if(!stats) return <p>Loading...</p>
     console.log(stats);
     return (
