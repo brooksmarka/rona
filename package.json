@@ -4,12 +4,16 @@
   "description": "Displaying COVID-19 virus data",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "next"
   },
+  "keywords": [],
   "author": "Mark Brooks",
   "license": "ISC",
   "dependencies": {
     "next": "^9.3.0",
+    "normalize.css": "^8.0.1",
+    "node-gyp": "^6.1.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "styled-components": "^5.0.1"

@@ -2,11 +2,13 @@ import {useState, useEffect} from 'react';
 
 export default function useStats(url){
     const[stats, setStats] = useState();
-    const[loading, setLoading] = useState(false)
+    const[loading, setLoading] = useState(true)
     const[error, setError] = useState();
     useEffect(() => {
+		console.log("mounting or updating");
         async function fetchData() {
-            setLoading(true);
+			setLoading(true);
+			setError();
             console.log("Fetching Data");
             const data = await fetch(url).then(res => res.json()).catch(err =>{
 				setError(err);
@@ -16,7 +18,7 @@ export default function useStats(url){
         }
 
         fetchData();
-    }, []);
+    }, [url]);
     return {
         stats,
         loading,
