@@ -11,7 +11,7 @@
   "author": "Mark Brooks",
   "license": "ISC",
   "dependencies": {
-    "next": "^9.3.0",
+    "next": "^9.3.2",
     "normalize.css": "^8.0.1",
     "node-gyp": "^6.1.0",
     "react": "^16.13.0",
