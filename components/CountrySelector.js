@@ -7,9 +7,20 @@ export default function CountrySelector(){
     const { stats: countries, loading, error } = useStats(
         'https://covid19.mathdro.id/api/countries'
       );
+      
     const [selectedCountry, setSelectedCountry] = useState('USA');
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error...</p>;
+
+    //We're having an issue with partial entries to the countries object, 
+    //let's create a list of countries that all have iso3 numbers 
+    let filteredCountries = [];
+    countries.countries.forEach(country => {
+        if (country["iso3"]){
+            filteredCountries.push(country)
+        }
+    })
+
     return (
         <div>
             <h2>Currently Showing {selectedCountry}</h2>
@@ -18,15 +29,14 @@ export default function CountrySelector(){
                     setSelectedCountry(e.target.value);
                 }}
             >
-                {Object.entries(countries.countries).map((
-                    [country, code]) => (
-                        <option 
-                        selected={selectedCountry === countries.iso3[code]}
+                {filteredCountries.map((country, code) => (
+                    <option 
+                        selected={selectedCountry === countries.countries[code].iso3}
                         key={code} 
-                        value={countries.iso3[code]}>
-                            {country}
-                        </option>
-                    ))}
+                        value={countries.countries[code].iso3}>
+                            {countries.countries[code].name}
+                    </option>
+                ))}
             </select>
             <Stats
                 url={`https://covid19.mathdro.id/api/countries/${selectedCountry}`}
